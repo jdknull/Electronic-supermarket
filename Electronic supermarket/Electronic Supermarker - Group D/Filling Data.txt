@@ -1,0 +1,67 @@
+/* WAREHOUSE 1 */
+insert into Warehouse values(700,1,8845678);
+insert into Employee values(8845678,'Omar','Saeed','Alzahrani', 0566115702 , 'Jeddah' , 10000 ,1, saqr);
+insert into Dependent values(8845678,0549947469, 'Saeed' , 'Omar' , 'Alzahrani');
+insert into Employee values(0251472,'Moath','Mesleh','Alsolami', 0561235484 , 'Jeddah' , 5000 ,1, saqr);
+insert into Employee values(0240579,'Fahad','Hammad','Alsifri', 0562357895 , 'Jeddah' , 2500 ,1, saqr);
+insert into Employee values(0243998,'Reem','Mohammed','Alqahtani', 0554517895 , 'Jeddah' , 2500 ,1, saqr);
+
+/* WAREHOUSE 2 */
+insert into Warehouse values(700,2,8836023);
+insert into Employee values(8836023,'Abdulaziz','Adnan','Alsharief', 0503368999 , 'Jeddah' , 26000 ,2, saqr);
+insert into Dependent values(8836023,Saqr, 'Abdulaziz' , 'Alsharief' , 0555599999);
+insert into Employee values(9958698,'Mohammed','Ali','Alghamdi', 0535489657 , 'Jeddah' , 5000 ,2, saqr);
+insert into Employee values(9932145,'rakan','Ahmed','salamah', 0561478596 , 'Jeddah' , 20000 ,2, saqr);
+
+/* SUPPLIER */
+
+insert into Supplier values(1, 'almaraie', 0549342342, '3337 Prince Majid Rd,8799، Jeddah 22245 3337');
+insert into Supplier values(2, 'nadik', 0549343256,'Andalus Mall, Al Fayhaa, Jeddah 22245');
+insert into Supplier values(3, 'nda', 05495837432,'7458 Al-Madinah Al-Munawarah Rd, Al Baghdadiyah Al Gharbiyah District, Jeddah');
+insert into Supplier values(4, 'safi',05483748134 ,'Mönckebergstraße 11, 20095 Hamburg, Germany');
+insert into Supplier values(5, 'Godi',05483748134 ,'Mönckebergstraße 11, 20095 Hamburg, Saudi Arabia');
+
+/* Adding products */
+insert into Product values(1001, 'cheese', 15, 1, 10, 3);
+insert into Product values(1002, 'Milk', 10, 1, 20, 4);
+insert into Product values(1003, 'Laban', 10, 1, 30, 5);
+insert into Product values(1004, 'Mayoneis', 150, 1, 24, 7);
+insert into Product values(1005, 'Tomato', 5, 1, 40, 30);
+insert into Product values(1006, 'Latucce ', 5, 1, 30, 40);
+insert into Product values(1007, 'Orange', 15, 2, 40, 25 );
+
+/* CUSTOMER  */
+insert into Customer values(2040568, 'reem', 'ahamd', 'AlQahtani',0564554698,'alkobr', saqr);
+insert into Customer values(2056845.'nasser', 'mohamd', 'subhi',0512345678,'almedina', saqr);
+insert into Customer values(2036951, 'saud', 'abdullah', 'aldossry',0592737523,'Riyadh', saqr);
+insert into Customer values(2045815, 'saeed', 'naif', 'selimanie',0592737523,'Makkah', saqr);
+
+/* Delivery  */
+insert into Delivery values(100,1);
+insert into Delivery values(101,2);
+
+/* ORD  */
+insert into Delivery values(1,100,500,10,17-9-2022, 18-9-2022);
+insert into Delivery values(2,101,450,10,17-9-2022, 18-9-2022);
+
+/* Cart  */
+insert into Delivery values(1,1,2040568,10,150);
+insert into Delivery values(2,2,2036951,10,200);
+
+/* Payment  */
+insert into Payment values(1,1,'**THANK YOU FOR PURCHASING**', 'CARD', '11-3-2022');
+insert into Payment values(2,2,'**THANK YOU FOR PURCHASING**', 'CASH ON Delivery', '11-3-2022');
+
+/* Works_ON  */
+insert into WORKS_ON values(0251472,1);
+insert into WORKS_ON values(0243998,2);
+
+
+/* Display  */
+insert into Display values(1001,1);
+insert into Display values(1002,2);
+
+
+/* Supplies  */
+insert into Display values(1001,1);
+insert into Display values(1002,2);

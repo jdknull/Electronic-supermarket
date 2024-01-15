@@ -1,0 +1,172 @@
+purge recyclebin;
+drop table Warehouse cascade constraints;
+drop table Employee cascade constraints;
+drop table Dependent cascade constraints;
+drop table Customer cascade constraints;
+drop table DELIVERY cascade constraints;
+drop table ORD cascade constraints;
+drop table PRODUCT cascade constraints;
+drop table SUPPLIER cascade constraints;
+drop table CART cascade constraints;
+drop table Payment cascade constraints;
+drop table WORKS_ON cascade constraints;
+drop table DISPLAY cascade constraints;
+drop table SUPPLIES cascade constraints;
+
+
+CREATE TABLE WAREHOUSE
+(
+Wh_ID integer,
+MEmpID integer,
+capacity integer,
+CONSTRAINT warehouse_pk PRIMARY KEY (Wh_ID)
+);
+
+CREATE TABLE CUSTOMER
+(
+Cus_ID integer NOT NULL,
+Cus_Fname varchar2(38) NOT NULL,
+Cus_Mname varchar2(38),
+Cus_Lname varchar2(38) NOT NULL,
+Cus_Phone varchar2(38) NOT NULL,
+Cus_Address varchar2(38),
+Pass varchar2(38),
+CONSTRAINT customer_pk PRIMARY KEY (Cus_ID)
+);
+
+CREATE TABLE DELIVERY
+(
+Deli_ID integer,
+Car_num integer,
+CONSTRAINT Delivery_pk PRIMARY KEY (Deli_ID)
+);
+
+CREATE TABLE SUPPLIER
+(
+Sup_ID integer,
+Sup_Name varchar2(38),
+Quantity integer,
+CONSTRAINT Supplier_pk PRIMARY KEY (Sup_ID)
+);
+
+
+CREATE TABLE EMPLOYEE
+(
+Emp_ID integer,
+Emp_Fname varchar2(38) NOT NULL,
+Emp_Mname varchar2(38),
+Emp_Lname varchar2(38) NOT NULL,
+Emp_Phone varchar2(38),
+Emp_Address varchar2(38),
+Emp_Salary integer,
+Emp_Warehouse integer,
+Pass varchar2(38),
+CONSTRAINT employee_pk PRIMARY KEY(Emp_ID),
+CONSTRAINT emp_warehouse FOREIGN KEY (Emp_Warehouse) REFERENCES Warehouse(Wh_ID)
+);
+
+CREATE TABLE Dependent
+(
+Emp_ID integer,
+Dep_Fname varchar2(38),
+Dep_Mname varchar2(38),
+Dep_Lname varchar2(38),
+Dep_Phone varchar2(38),
+CONSTRAINT dependenEmp FOREIGN KEY (Emp_ID) REFERENCES Employee(Emp_id)
+);
+
+
+CREATE TABLE ORD
+(
+O_ID integer,
+Deli_ID integer, 
+Price integer,
+Count integer,
+O_Date varchar2(38),
+Deli_Date varchar2(38),
+CONSTRAINT order_pk PRIMARY KEY (O_ID),
+CONSTRAINT Deli_Order FOREIGN KEY (Deli_ID) REFERENCES DELIVERY(Deli_ID)
+);
+
+CREATE TABLE PRODUCT
+(
+P_ID integer,
+P_Name varchar2(38),
+Price integer,
+Wh_ID integer,
+Count integer,
+Sold integer,
+CONSTRAINT product_pk PRIMARY KEY (P_ID),
+CONSTRAINT product_Warehouse FOREIGN KEY (Wh_ID) REFERENCES Warehouse(Wh_ID)
+);
+
+CREATE TABLE R_PRODUCT
+(
+Emp_ID integer,
+RP_ID integer,
+RP_Name varchar2(38),
+RPrice integer,
+Count integer,
+CONSTRAINT Rproduct_pk PRIMARY KEY (RP_ID),
+CONSTRAINT Rproduct_fk FOREIGN KEY (Emp_ID) REFERENCES Employee(Emp_id)
+);
+
+CREATE TABLE RPP
+(
+RP_ID integer,
+P_ID integer,
+CONSTRAINT RPP FOREIGN KEY (RP_ID) REFERENCES R_PRODUCT(RP_ID),
+CONSTRAINT PP FOREIGN KEY (P_ID) REFERENCES PRODUCT(P_ID)
+);
+
+
+CREATE TABLE CART
+(
+C_ID integer,
+C_OID integer,
+C_CID integer,
+Count integer,
+Price integer,
+CONSTRAINT Cart_pk PRIMARY KEY (C_ID),
+CONSTRAINT Cart_Order FOREIGN KEY (C_OID) REFERENCES ORD(O_ID),
+CONSTRAINT Cart_Customer FOREIGN KEY (C_CID) REFERENCES Customer(Cus_ID)
+);
+
+CREATE TABLE Payment
+(
+Pay_ID integer,
+Pay_CID integer,
+Recipt varchar2(40),
+Pay_Type varchar2(20),
+Pay_Date varchar2(38),
+CONSTRAINT payment_pk PRIMARY KEY (Pay_ID),
+CONSTRAINT Payment_Customer FOREIGN KEY (Pay_CID) REFERENCES CUSTOMER(Cus_ID)
+);
+
+CREATE TABLE WORKS_ON
+(
+Emp_ID integer,
+Wh_ID integer,
+CONSTRAINT Works_On_Emp_ID FOREIGN KEY (Emp_ID) REFERENCES EMPLOYEE(Emp_ID),
+CONSTRAINT Works_On_Wh_ID FOREIGN KEY (Wh_ID) REFERENCES WAREHOUSE(Wh_ID)
+);
+
+CREATE TABLE DISPLAY
+(
+D_PID integer,
+D_OID integer,
+CONSTRAINT Display_Product_ID FOREIGN KEY (D_PID) REFERENCES PRODUCT(P_ID),
+CONSTRAINT Display_Order_ID FOREIGN KEY (D_OID) REFERENCES ORD(O_ID)
+);
+
+CREATE TABLE SUPPLIES
+(
+S_PID integer,
+S_SID integer,
+CONSTRAINT Supplies_Product_ID FOREIGN KEY (S_PID) REFERENCES PRODUCT(P_ID),
+CONSTRAINT Supplies_Supplier_ID FOREIGN KEY (S_SID) REFERENCES SUPPLIER(Sup_ID)
+);
+
+
+
+
